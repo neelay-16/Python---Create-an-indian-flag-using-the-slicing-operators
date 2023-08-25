@@ -1,0 +1,23 @@
+from PIL import Image, ImageDraw
+def image_100_100():
+    width, height = 100, 100
+    image = Image.new("RGB", (width, height), (255, 255, 255))
+    draw = ImageDraw.Draw(image)
+    stripe_height = height // 3
+    draw.rectangle([(0, 0), (width, stripe_height)], fill=(255, 153, 51))
+    draw.rectangle([(0, stripe_height), (width, 2 * stripe_height)], fill=(255, 255, 255))
+    draw.rectangle([(0, 2 * stripe_height), (width, height)], fill=(0, 128, 0))
+    chakra_radius = min(width, height) // 8
+    chakra_center = (width // 2, stripe_height + (stripe_height // 2))
+    draw.ellipse(
+    [
+        (chakra_center[0] - chakra_radius, chakra_center[1] - chakra_radius),
+        (chakra_center[0] + chakra_radius, chakra_center[1] + chakra_radius),
+    ],
+    fill=(0, 56, 168),
+    )
+
+    image.save("indian_flag.png")
+    image.show()
+    
+image_100_100()
